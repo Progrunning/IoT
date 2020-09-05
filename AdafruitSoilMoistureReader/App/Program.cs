@@ -1,34 +1,46 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using AdafruitSoilMoistureReader.Core.Interfaces;
+using AdafruitSoilMoistureReader.Core.Models;
+using AdafruitSoilMoistureReader.Core.Services;
+using Microsoft.Azure.Devices.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace AdafruitSoilMoistureReader.App
 {
-    internal class Program
+    public class Program
     {
-        public static string RunPythonCommand(string command, string pythonExecPath, string args)
+        private static async Task Main(string[] args)
         {
-            var start = new ProcessStartInfo
+            var adafruitConfigurationJson = await File.ReadAllTextAsync("localSettings.json");
+            var adafruitConfiguration = JsonSerializer.Deserialize<AdafruitSoilMoistureReaderConfiguration>(adafruitConfigurationJson);
+
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .CreateLogger();
+
+            var serviceProvider = new ServiceCollection()
+                .AddLogging(builder => builder.AddSerilog(Log.Logger))
+                .AddSingleton<IAdafruitSoilMoistureReaderConfiguration>(adafruitConfiguration)
+                .AddSingleton<IIotHubService, IotHubService>()
+                .AddSingleton<IAdafruitSoilMoistureReaderService, AdafruitSoilMoistureReaderService>()
+                .BuildServiceProvider();
+
+            var adafruitSoilMoistureReaderService = serviceProvider.GetService<IAdafruitSoilMoistureReaderService>();
+            var iotHubService = serviceProvider.GetService<IIotHubService>();
+
+            while (true)
             {
-                FileName = pythonExecPath,
-                Arguments = $"\"{command}\" \"{args}\"",
-                UseShellExecute = false,
-                CreateNoWindow = true,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true
-            };
+                var reading = await adafruitSoilMoistureReaderService.Read();
+                await iotHubService.SendAdafruitSoilMoistureReading(reading);
 
-            using var process = Process.Start(start);
-            using var reader = process?.StandardOutput;
-
-            string stderr = process?.StandardError.ReadToEnd();
-            string result = reader?.ReadToEnd();
-            return result;
-        }
-
-        private static void Main(string[] args)
-        {
-            var res = RunPythonCommand("read_temp_and_soil_moisture.py", args[0], null);
-            Console.WriteLine(res);
+                await Task.Delay(5000);
+            }
         }
     }
 }
