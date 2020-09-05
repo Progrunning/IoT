@@ -11,6 +11,8 @@ namespace AdafruitSoilMoistureReader.App
 {
     public class Program
     {
+        private const int DefaultIntervalOfReadingDataFromSensorInMilliseconds = 60 * 1000 * 5; // 5 min
+
         private static async Task Main(string[] args)
         {
             var adafruitConfigurationJson = await File.ReadAllTextAsync("localSettings.json");
@@ -31,13 +33,19 @@ namespace AdafruitSoilMoistureReader.App
 
             var adafruitSoilMoistureReaderService = serviceProvider.GetService<IAdafruitSoilMoistureReaderService>();
             var iotHubService = serviceProvider.GetService<IIotHubService>();
+            var argumentsService = serviceProvider.GetService<IArgumentsService>();
+
+            var readingIntervalInMilliseconds = DefaultIntervalOfReadingDataFromSensorInMilliseconds;
+            if (argumentsService.Arguments.Length > 1 && int.TryParse(argumentsService.Arguments[1], out readingIntervalInMilliseconds))
+            {
+            }
 
             while (true)
             {
                 var reading = await adafruitSoilMoistureReaderService.Read();
                 await iotHubService.SendAdafruitSoilMoistureReading(reading);
 
-                await Task.Delay(5000);
+                await Task.Delay(readingIntervalInMilliseconds);
             }
         }
     }

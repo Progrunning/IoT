@@ -63,10 +63,12 @@ Before you will be able to run the App you will need to update the executable pe
 
 ### Execution
 
-The app takes a single input argument. 
+The app takes two input arguments. 
 
-The argument is the path to Python executable. The executable for Python Version 3 is usually located in the following path `/usr/bin/python3` on your Rasperry Pi.
+The first argument is the path to Python executable. The executable for Python Version 3 is usually located in the following path `/usr/bin/python3` on your Rasperry Pi.
+
+The second argument is the interval between retrieval of readings (in milliseconds). If no value provided the readings will be captured every 5min.
 
 For instance, the execute command could look like this:
 
-`./AdafruitSoilMoistureReader.App /usr/bin/python3`
+`./AdafruitSoilMoistureReader.App /usr/bin/python3 20000`

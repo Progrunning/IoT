@@ -12,4 +12,4 @@ ss = Seesaw(i2c_bus, addr=0x36)
 soilMoistureReading = ss.moisture_read()
 temperatureReading = ss.get_temp()
 
-print("{ \"soilMoisture\":" + str(soilMoistureReading) + ", \"temperature\":" + str(temperatureReading) + " }")
+print("{ \"SoilMoisture\":" + str(soilMoistureReading) + ", \"Temperature\":" + str(temperatureReading) + " }")
