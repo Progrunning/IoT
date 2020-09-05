@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdafruitSoilMoistureReader.App", "App\AdafruitSoilMoistureReader.App.csproj", "{4391D99A-43A2-40C4-B682-823807393145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdafruitSoilMoistureReader.Core", "Core\AdafruitSoilMoistureReader.Core.csproj", "{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4391D99A-43A2-40C4-B682-823807393145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4391D99A-43A2-40C4-B682-823807393145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4391D99A-43A2-40C4-B682-823807393145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4391D99A-43A2-40C4-B682-823807393145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C88754FD-ECDA-4EE6-B697-40740F81735B}
+	EndGlobalSection
+EndGlobal
