@@ -22,7 +22,7 @@ Below are the materials, guidelines and useful commands that I've gathered while
 
 In order to publish this project one will need to execute the following command
 
-`dotnet publish -r linux-arm`
+`dotnet publish -r linux-arm -c Release`
 
 NOTE: Once the publish is done you will need to copy all of the files from the `publish` folder onto your Rasperry Pi (see Copy files part of this readme).
 
@@ -54,4 +54,19 @@ Pi Python path: /usr/bin/python3 or /usr/bin/python3.7
 
 ## Run
 
-The app takes a single input argument. The argument is the path to the Python executable. The executable for Python Version 3 is usually located in the following path `/usr/bin/python3` on your Rasperry Pi
+### Permissions
+
+Before you will be able to run the App you will need to update the executable permissions on the application and python script files. You can do that by executing the following commands 
+
+`chmod +x ./AdafruitSoilMoistureReader.App`
+`chmod +x ./read_temp_and_soil_moisture.py`
+
+### Execution
+
+The app takes a single input argument. 
+
+The argument is the path to Python executable. The executable for Python Version 3 is usually located in the following path `/usr/bin/python3` on your Rasperry Pi.
+
+For instance, the execute command could look like this:
+
+`./AdafruitSoilMoistureReader.App /usr/bin/python3`

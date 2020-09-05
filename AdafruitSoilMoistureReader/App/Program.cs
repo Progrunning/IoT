@@ -1,12 +1,9 @@
-﻿using System.Diagnostics;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AdafruitSoilMoistureReader.Core.Interfaces;
 using AdafruitSoilMoistureReader.Core.Models;
 using AdafruitSoilMoistureReader.Core.Services;
-using Microsoft.Azure.Devices.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
@@ -26,6 +23,7 @@ namespace AdafruitSoilMoistureReader.App
 
             var serviceProvider = new ServiceCollection()
                 .AddLogging(builder => builder.AddSerilog(Log.Logger))
+                .AddSingleton<IArgumentsService>(new ArgumentService(args))
                 .AddSingleton<IAdafruitSoilMoistureReaderConfiguration>(adafruitConfiguration)
                 .AddSingleton<IIotHubService, IotHubService>()
                 .AddSingleton<IAdafruitSoilMoistureReaderService, AdafruitSoilMoistureReaderService>()

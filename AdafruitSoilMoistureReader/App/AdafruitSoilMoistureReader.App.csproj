@@ -17,4 +17,16 @@
     <ProjectReference Include="..\Core\AdafruitSoilMoistureReader.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="localSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="test_read_temp_and_soil_moisture.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="read_temp_and_soil_moisture.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
