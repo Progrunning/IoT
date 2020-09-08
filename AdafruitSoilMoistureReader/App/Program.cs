@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
 using AdafruitSoilMoistureReader.Core.Interfaces;
@@ -6,6 +7,7 @@ using AdafruitSoilMoistureReader.Core.Models;
 using AdafruitSoilMoistureReader.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Core;
 
 namespace AdafruitSoilMoistureReader.App
 {
@@ -42,8 +44,15 @@ namespace AdafruitSoilMoistureReader.App
 
             while (true)
             {
-                var reading = await adafruitSoilMoistureReaderService.Read();
-                await iotHubService.SendAdafruitSoilMoistureReading(reading);
+                try
+                {
+                    var reading = await adafruitSoilMoistureReaderService.Read();
+                    await iotHubService.SendAdafruitSoilMoistureReading(reading);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex, "Failed to read or send the data.");
+                }
 
                 await Task.Delay(readingIntervalInMilliseconds);
             }
