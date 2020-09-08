@@ -5,9 +5,18 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdafruitSoilMoistureReader.App", "App\AdafruitSoilMoistureReader.App.csproj", "{4391D99A-43A2-40C4-B682-823807393145}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdafruitSoilMoistureReader.Core", "Core\AdafruitSoilMoistureReader.Core.csproj", "{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdafruitSoilMoistureReader.Core", "Core\AdafruitSoilMoistureReader.Core.csproj", "{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdafruitSoilMoistureReader.Functions", "Functions\AdafruitSoilMoistureReader.Functions\AdafruitSoilMoistureReader.Functions.csproj", "{AAB07ABF-95C3-4E21-A4F2-85AD3BBA7368}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AdafruitSoilMoistureReader.Shared", "Shared\AdafruitSoilMoistureReader.Shared\AdafruitSoilMoistureReader.Shared.shproj", "{2171D360-0E7D-4155-AF0D-2E08EF655C77}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\AdafruitSoilMoistureReader.Shared\AdafruitSoilMoistureReader.Shared.projitems*{2171d360-0e7d-4155-af0d-2e08ef655c77}*SharedItemsImports = 13
+		Shared\AdafruitSoilMoistureReader.Shared\AdafruitSoilMoistureReader.Shared.projitems*{7189d422-00ab-4a40-9f3a-5c0ff4e3542e}*SharedItemsImports = 5
+		Shared\AdafruitSoilMoistureReader.Shared\AdafruitSoilMoistureReader.Shared.projitems*{aab07abf-95c3-4e21-a4f2-85ad3bba7368}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -21,6 +30,10 @@ Global
 		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7189D422-00AB-4A40-9F3A-5C0FF4E3542E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB07ABF-95C3-4E21-A4F2-85AD3BBA7368}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB07ABF-95C3-4E21-A4F2-85AD3BBA7368}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB07ABF-95C3-4E21-A4F2-85AD3BBA7368}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB07ABF-95C3-4E21-A4F2-85AD3BBA7368}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
